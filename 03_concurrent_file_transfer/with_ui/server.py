@@ -25,9 +25,9 @@ def handle_client(conn, addr):
     conn.close()
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server.bind(("localhost", 9999))
+server.bind(("localhost", 9990))
 server.listen(5)
-print(f"Server listening on {'localhost'}:{9999}")
+print(f"Server listening on {'localhost'}:{9990}")
 
 while True:
     conn, addr = server.accept()

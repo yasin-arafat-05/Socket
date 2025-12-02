@@ -11,7 +11,7 @@ if st.button("Download"):
     else:
         try:
             client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            client.connect(('localhost', 9999))
+            client.connect(('localhost', 9990))
             client.send(filename.encode())
             response = client.recv(1024)
             if response == b'OK':
@@ -35,3 +35,4 @@ if st.button("Download"):
             st.error("Could not connect to the server. Make sure the server is running on localhost:9999.")
         except Exception as e:
             st.error(f"An error occurred: {str(e)}")
+            
